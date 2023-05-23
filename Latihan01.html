@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan 1 JSON</title>
+</head>
+<body>
+
+    Nama: <span id="txNAMA"></span><br>
+    Jenis_Kelamin: <span id="txJKEL"></span><br>
+    Alamat: <span id="txALAMAT"></span><br>
+    Jurusan: <span id="txJURUSAN"></span><br>
+    Tanggal_Lahir: <span id="txTGLLAHIR"></span><br>
+
+    <script>
+        const bacadta = new XMLHttpRequest();
+        bacadta.open("GET","http://localhost/mahima/sesi11/Latihan01.php")
+        bacadta.send();
+
+        bacadta.onload = function(){
+            const dta = JSON.parse(this.responseText);
+            let JKEL = "Laki=Laki";
+            if (dta.JKEL=="P"); {
+                JKEL = "Perempuan";
+            }
+            console.log(dta);
+            document.getElementById("txNAMA").innerHTML=dta.NAMA;
+            document.getElementById("txJKEL").innerHTML=JKEL;
+            document.getElementById("txALAMAT").innerHTML=dta.ALAMAT;
+            document.getElementById("txJURUSAN").innerHTML=dta.JURUSAN;
+            document.getElementById("txTGLLAHIR").innerHTML=dta.TGL_LAHIR;
+
+        }
+    </script>
+    
+    
+</body>
+</html>
